@@ -1,0 +1,110 @@
+body {
+    background-color: #ffc107; /* bg-warning */
+    display: flex; 
+    flex-direction: column; margin: 0; padding: 0; height: 100vh;
+}
+header {
+    position: fixed; top: 0; width: 100vw;
+
+}
+
+main {
+    flex: 1;
+}
+
+.main-div{
+    display: flex;  flex-direction: column ; justify-content: center;  align-items: center;  height: 500px;
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.menu-flex-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+
+    margin: 0;
+}
+
+
+.p1 {
+    font-weight: bold;
+
+}
+
+menu {
+    background-color: brown;
+}
+
+
+.logotipo {
+    margin: 0 10px;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+
+
+}
+
+nav {
+
+    margin: 0;
+    background-color: darkred;
+    color: #fff;
+    padding: 10px;
+
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    
+}
+.li-menu{
+    margin: 0 10px;
+}
+li {
+    margin-right: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer {
+    background-color: darkred;
+    color: white;
+    text-align: center;
+    height: 30px;
+}
+.title-margin{
+    margin:0, 10px ;
+}
+
+nav ul li {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+nav ul li.active {
+    border-bottom: 2px solid #ff6600; /* Adapte a cor conforme necessário */
+    opacity: 1;
+    color: #ff6600; /* Adapte a cor conforme necessário */
+}
+
+nav ul li:hover {
+    border-bottom: 2px solid #0077cc; /* Adapte a cor conforme necessário */
+    opacity: 0.8;
+    color: #0077cc; /* Adapte a cor conforme necessário */
+}

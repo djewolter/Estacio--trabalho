@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuários de Teste via REST</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <link rel="stylesheet" href="./usuarios.css" />
+  <style>
+    body {
+      background-color: #ffc107; /* bg-warning */
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li id="menu" class="li-menu">menu</li>
+      <li id="ordenando" class="li-menu">ordenando</li>
+      <li id="receitas" class="li-menu">receitas</li>
+      <li id="usuarios-menu" class="li-menu">usuarios</li>
+    </ul>
+  </nav>
+
+  <div class="container bg-warning">
+
+  <h1>Usuários de Teste via REST</h1>
+  <!-- Referência ao site reqres.in -->
+  <div id="usuarios" class="container-fluid">
+    <div class="row">
+      <div class="card col-md-3 p-2 m-3" v-for="(user, index) in users" :key="index">
+        <img :src="user.avatar" class="card-img-top" alt="Avatar">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+          <p class="card-text">{{ user.email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+    // Objeto de controle VUE JS
+    const app = new Vue({
+      el: '#usuarios',
+      data() {
+        return {
+          users: []
+        };
+      },
+      mounted() {
+        this.loadUsers();
+      },
+      methods: {
+        loadUsers() {
+          fetch('https://reqres.in/api/users?per_page=10')
+            .then(response => response.json())
+            .then(data => this.users = data.data)
+            .catch(error => console.error('Erro ao carregar usuários', error));
+        }
+      }
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+          document
+            .getElementById("menu")
+            .addEventListener("click", function () {
+              console.log("entrei")
+              window.location.href = "menu.html";
+            })
+
+          document
+            .getElementById("ordenando")
+            .addEventListener("click", function () {
+              console.log("entrei no ordenado")
+              window.location.href = "ordenando.html";
+            })
+          document
+            .getElementById("receitas")
+            .addEventListener("click", function () {
+              console.log("entrei no receitas")
+              window.location.href = "./receitas.html";
+            })
+
+          document
+          .getElementById("usuarios-menu")
+            .addEventListener("click", function () {
+              console.log("entrei no ultimo")
+              window.location.href = "./usuarios.html";
+            })
+
+          var currentPage = window.location.pathname;
+          var menuItems = document.querySelectorAll("nav ul li");
+
+          menuItems.forEach(function (item) {
+            var itemPath = item.id.toLowerCase();
+            if (currentPage.indexOf(itemPath) !== -1) {
+              console.log("item 03", item);
+              item.classList.add("active");
+            } else {
+              console.log("item 04", item);
+              item.classList.remove("active");
+            }
+          });
+        });
+  </script>
+</body>
+</html>

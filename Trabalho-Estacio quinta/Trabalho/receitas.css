@@ -1,0 +1,106 @@
+body {
+    background-color: #ffc107; /* bg-warning */
+
+}
+
+main {
+    flex: 1;
+}
+
+menu {
+    background-color: brown;
+}
+
+nav {
+
+    margin: 0;
+    background-color: darkred;
+    color: #fff;
+    padding: 10px;
+
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    
+}
+.li-menu{
+    margin: 0 10px;
+}
+li {
+    margin-right: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer {
+    background-color: darkred;
+    color: white;
+    
+    height: 30px;
+}
+.title-margin{
+    margin:0, 10px ;
+}
+
+nav ul li {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+nav ul li.active {
+    border-bottom: 2px solid #ff6600; /* Adapte a cor conforme necessário */
+    opacity: 1;
+    color: #ff6600; /* Adapte a cor conforme necessário */
+}
+
+nav ul li:hover {
+    border-bottom: 2px solid #0077cc; /* Adapte a cor conforme necessário */
+    opacity: 0.8;
+    color: #0077cc; /* Adapte a cor conforme necessário */
+}
+.card {
+    width: 300px; /* Ajuste a largura conforme necessário */
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 1em;
+  }
+  
+  .card-text hr {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+  }
+
+    .ul-ingredientes{
+        width: 100%;
+        display: block;
+
+}

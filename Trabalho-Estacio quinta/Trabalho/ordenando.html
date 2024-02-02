@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ordenação de Valores</title>
+    <script src="ordenando.js"></script>
+    <link rel="stylesheet" href="ordenando.css" />
+  </head>
+  <style>
+    body {
+      background-color: #ffc107; /* bg-warning */
+    }
+  </style>
+  <body>
+    <nav>
+      <ul>
+        <li id="menu" class="li-menu">menu</li>
+        <li id="ordenando" class="li-menu">ordenando</li>
+        <li id="receitas" class="li-menu">receitas</li>
+        <li id="usuarios-menu" class="li-menu">usuarios</li>
+      </ul>
+    </nav>
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" />
+    <button onclick="add()">Adicionar</button>
+
+    <br /><br />
+
+    <label for="algoritmo">Escolha o algoritmo:</label>
+    <select id="algoritmo">
+      <option value="bubble_sort" selected>Bubble Sort</option>
+      <option value="selection_sort">Selection Sort</option>
+      <option value="quick_sort">Quick Sort</option>
+    </select>
+    <button onclick="ordenar()">Ordenar</button>
+    <button onclick="misturar()">Misturar</button>
+
+    <br /><br />
+
+    <ul id="valores"></ul>
+
+    <script>
+      function add() {
+        const valorInput = document.getElementById("valor");
+        const valoresList = document.getElementById("valores");
+        const node = document.createElement("li");
+        const textNode = document.createTextNode(valorInput.value);
+
+        node.appendChild(textNode);
+        valoresList.appendChild(node);
+
+        valorInput.value = ""; // Limpa o campo de entrada após adicionar o valor
+      }
+
+      function ordenar() {
+        const valoresList = document.getElementById("valores");
+        const algoritmoSelect = document.getElementById("algoritmo");
+
+        const valoresArray = Array.from(valoresList.children).map((item) =>
+          parseInt(item.innerHTML)
+        );
+
+        switch (algoritmoSelect.value) {
+          case "bubble_sort":
+            bubble_sort(valoresArray);
+            break;
+          case "selection_sort":
+            selection_sort(valoresArray);
+            break;
+          case "quick_sort":
+            quick_sort(valoresArray, 0, valoresArray.length - 1);
+            break;
+        }
+
+        valoresList.innerHTML = valoresArray
+          .map((valor) => `<li>${valor}</li>`)
+          .reduce((acc, item) => acc + item, "");
+      }
+
+      function misturar() {
+        const valoresList = document.getElementById("valores");
+        const valoresArray = Array.from(valoresList.children).map((item) =>
+          parseInt(item.innerHTML)
+        );
+
+        shuffle(valoresArray, valoresArray.length);
+
+        valoresList.innerHTML = valoresArray
+          .map((valor) => `<li>${valor}</li>`)
+          .reduce((acc, item) => acc + item, "");
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("menu").addEventListener("click", function () {
+          console.log("entrei");
+          window.location.href = "menu.html";
+        });
+
+        document
+          .getElementById("ordenando")
+          .addEventListener("click", function () {
+            console.log("entrei no ordenado");
+            window.location.href = "ordenando.html";
+          });
+
+        document
+          .getElementById("receitas")
+          .addEventListener("click", function () {
+            console.log("entrei no receitas");
+            window.location.href = "./receitas.html";
+          });
+
+        document
+          .getElementById("usuarios-menu")
+          .addEventListener("click", function () {
+            console.log("entrei no ultimo");
+            window.location.href = "./usuarios.html";
+          });
+
+        var currentPage = window.location.pathname;
+        var menuItems = document.querySelectorAll("nav ul li");
+
+        menuItems.forEach(function (item) {
+          var itemPath = item.id.toLowerCase();
+          if (currentPage.indexOf(itemPath) !== -1) {
+            console.log("item 03", item);
+            item.classList.add("active");
+          } else {
+            console.log("item 04", item);
+            item.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

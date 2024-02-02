@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Receitas</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="receitas.css" />
+    <style>
+      body {
+        background-color: #ffc107; /* bg-warning */
+      }
+    </style>
+  </head>
+  <body onload="preencheCatalogo()">
+    <nav>
+      <ul>
+        <li id="menu" class="li-menu">menu</li>
+        <li id="ordenando" class="li-menu">ordenando</li>
+        <li id="receitas" class="li-menu">receitas</li>
+        <li id="usuarios-menu" class="li-menu">usuarios</li>
+      </ul>
+    </nav>
+    <div class="container-fluid bg-warning">
+      <div class="d-flex flex-wrap" id="pnlCatalogo">
+        <!-- Os painéis de receita serão adicionados aqui dinamicamente -->
+      </div>
+    </div>
+
+    <script>
+      const receitas = [
+        {
+          titulo: "Brigadeiro",
+          imagem: "./public/brigadeiro.jpg",
+          preparo:
+            "Preparar o brigadeiro é fácil e delicioso. Em uma panela, misture uma lata de leite condensado, duas colheres de sopa de chocolate em pó e uma colher de sopa de manteiga. Cozinhe em fogo médio, mexendo constantemente, até a mistura desgrudar do fundo da panela. Desligue o fogo e deixe esfriar um pouco. Com as mãos untadas, faça pequenas bolinhas e passe-as em granulado. Sirva e aproveite esses irresistíveis brigadeiros!",
+          ingredientes: [
+            "Leite condensado",
+            "Chocolate em pó",
+            "Manteiga",
+            "Granulado",],
+        },
+        {
+          titulo: "Mouse de Limão Siciliano",
+          imagem: "./public/mouse de limão.jpg",
+          preparo:
+            "Preparar o mousse de limão siciliano é refrescante e fácil. Em uma tigela, misture o suco de limão siciliano com raspas da casca. Em outra tigela, bata as claras em neve. Em uma terceira tigela, misture o leite condensado e o creme de leite. Incorpore delicadamente as claras em neve à mistura de limão. Distribua em taças individuais e leve à geladeira por pelo menos 4 horas. Sirva gelado e desfrute desta sobremesa leve e saborosa!",
+          ingredientes: [
+            "Suco de limão siciliano",
+            "Raspas da casca de limão siciliano",
+            "Claras de ovo",
+            "Leite condensado",
+            "Creme de leite",
+          ],
+        },
+      ];
+
+      function getListaIngredientes(ingredientes) {
+        const listaHTML = `<ul class= "ul-ingredientes">${ingredientes
+          .map((ingrediente) => `<li>${ingrediente}</li>`)
+          .reduce((acc, item) => acc + item, "")}</ul>`;
+        return listaHTML;
+      }
+
+      function getCard(receita) {
+        return `
+        <div class="card">
+          <img src="${receita.imagem}" alt="${receita.titulo}">
+          <div class="card-body">
+            <h5 class="card-title">${receita.titulo}</h5>
+            <div class="card-text">
+              ${getListaIngredientes(receita.ingredientes)}
+              <hr>
+              ${receita.preparo}
+            </div>
+          </div>
+        </div>
+      `;
+      }
+
+      function preencheCatalogo() {
+        const pnlCatalogo = document.getElementById("pnlCatalogo");
+        const catalogoHTML = receitas
+          .map((receita) => getCard(receita))
+          .reduce((acc, item) => acc + item, "");
+        pnlCatalogo.innerHTML = catalogoHTML;
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("menu").addEventListener("click", function () {
+          console.log("entrei");
+          window.location.href = "menu.html";
+        });
+
+        document
+          .getElementById("ordenando")
+          .addEventListener("click", function () {
+            console.log("entrei no ordenado");
+            window.location.href = "ordenando.html";
+          });
+
+        document
+          .getElementById("receitas")
+          .addEventListener("click", function () {
+            console.log("entrei no receitas");
+            window.location.href = "./receitas.html";
+          });
+
+        document
+          .getElementById("usuarios-menu")
+          .addEventListener("click", function () {
+            console.log("entrei no ultimo");
+            window.location.href = "./usuarios.html";
+          });
+
+        var currentPage = window.location.pathname;
+        var menuItems = document.querySelectorAll("nav ul li");
+
+        menuItems.forEach(function (item) {
+          var itemPath = item.id.toLowerCase();
+          if (currentPage.indexOf(itemPath) !== -1) {
+            console.log("item 03", item);
+            item.classList.add("active");
+          } else {
+            console.log("item 04", item);
+            item.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

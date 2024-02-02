@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./menu.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li id="menu" class="li-menu">menu</li>
+          <li id="ordenando" class="li-menu">ordenando</li>
+          <li id="receitas" class="li-menu">receitas</li>
+          <li id="usuarios-menu" class="li-menu">usuarios</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="main-div">
+        <section class="menu-item">
+          <img
+            class="logotipo"
+            src="./public/logotipo.jpg"
+            alt="logotipo.png"
+          />
+          <h1>Receitas da dona Lidiani</h1>
+        </section>
+        <section class="menu-flex-item">
+          <p>🌱✨</p>
+        </section>
+      </div>
+    </main>
+    <footer>&copy;Todos os direitos reservados.</footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("ordenando")
+          .addEventListener("click", function () {
+            window.location.href = "./ordenando.html";
+          });
+
+        document
+          .getElementById("receitas")
+          .addEventListener("click", function () {
+            window.location.href = "./receitas.html";
+          });
+
+        document
+          .getElementById("usuarios-menu")
+          .addEventListener("click", function () {
+            window.location.href = "./usuarios.html";
+          });
+
+        var currentPage = window.location.pathname;
+        var menuItems = document.querySelectorAll("nav ul li");
+
+        menuItems.forEach(function (item) {
+          var itemPath = item.id.toLowerCase();
+          if (currentPage.indexOf(itemPath) !== -1) {
+            console.log("item 03", item);
+            item.classList.add("active");
+          } else {
+            console.log("item 04", item);
+            item.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
